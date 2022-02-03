@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center mt-3 mb-3 "><u>Date d'aujourd'hui :</u></h1>
+    <h2 class="text-center"><b>{{ dateNow|date("d/m/Y H:i") }}</b></h2>
+    <hr>
+    <h2 class="mb-3 text-center mt-5"><u>Poste en cours</u></h2>
+    <div class="text-center mb-3">
+        <a href="{{ path('first') }}" class="btn btn-primary mt-3">Ajouter un Four</a>
+    </div>
+    <div class="row">
+            {% for first in firsts %}
+                <div class="col-4">
+                    <div class="card mt-3" style="width: 18rem;">
+                        <div class="card-header
+                            {% if date('now')| date("d/m/Y H:i") >= first.recuit|date_modify("-1 hour")|date("d/m/Y H:i") and date('now')| date("d/m/Y H:i") <= first.recuit|date("d/m/Y H:i")  %}
+                                bg-danger text-white
+                            {% endif %}
+                            text-center">
+                            <h5 class="card-title"><b>FOUR {{ first.four }}</b></h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <span class="badge badge-{% if first.statut == 'Sortie'%}success
+                            {% elseif first.statut == 'SAC'%}danger
+                            {% elseif first.statut == 'Ventilation'%}primary
+                            {% else %}secondary
+                            {% endif %}">{{ first.statut | upper}}
+                            </span>
+                            <p class="card-text mt-2"><b>{{ first.recuit | date("d/m/Y H:i") }}</b></p>
+                            <p><u>{% if first.emplacement != "" %}Base {% endif %} {{ first.emplacement }}</u></p>
+                            <p>{{ first.commentaires }}</p>
+                            <a href="{{ path('edit_first', {'id': first.id}) }}" class="btn btn-secondary">Modifier</a>
+                            <a href="{{ path('delete_first', {'id': first.id}) }}" class="btn btn-danger">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+
+    <hr class="mt-5">
+    <h2 class="mb-3 text-center mt-5"><u>Poste suivant</u></h2>
+        <div class="text-center mb-3">
+            <a href="{{ path('second') }}" class="btn btn-primary mt-3">Ajouter un Four</a>
+        </div>
+        <div class="row">
+            {% for second in seconds %}
+                <div class="col-4">
+                    <div class="card mt-3" style="width: 18rem;">
+                        <div class="card-header text-center">
+                            <h5 class="card-title">FOUR 5</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <span class="badge badge-{% if second.statut == 'Sortie'%}success
+                            {% elseif second.statut == 'SAC'%}danger
+                            {% else %}secondary
+                            {% endif %}">{{ second.statut | upper}}
+                            </span>
+                            <p class="card-text mt-2"><b>{{ second.recuit | date("d/m/Y H:i") }}</b></p>
+                            <p><u>{% if second.emplacement != "" %}Base {% endif %}{{ second.emplacement }}</u></p>
+                            <p>{{ second.commentaires }}</p>
+                            <a href="{{ path('edit_second', {'id': second.id}) }}" class="btn btn-secondary">Modifier</a>
+                            <a href="{{ path('delete_second', {'id': second.id}) }}" class="btn btn-danger">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr class="mt-5">
+    <h2 class="mb-3 text-center mt-5"><u>Four à l'arrêt</u></h2>
+    <div class="text-center mb-3">
+        <a href="{{ path('arret') }}" class="btn btn-primary mt-3">Ajouter un Four</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for arret in arrets  %}
+                <div class="col-4">
+                    <div class="card text-white bg-danger mt-3" style="max-width: 18rem;">
+                        <div class="card-header text-center">FOUR {{ arret.four }}</div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">ARRÊT</h5>
+                            <p ><u>{% if arret.emplacement != "" %}Base {% endif %} {{ arret.emplacement }}</u></p>
+                            <p class="card-text">{{ arret.commentaires }}</p>
+                            <a href="{{ path('edit_arret', {'id': arret.id}) }}" class="btn btn-secondary">Modifier</a>
+                            <a href="{{ path('delete_arret', {'id': arret.id}) }}" class="btn btn-warning">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+{% endblock %}

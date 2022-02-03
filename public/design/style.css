@@ -1,0 +1,6 @@
+#titre {
+    color: black;
+    text-shadow: 1px 1px 1px black;
+    box-shadow: 1px 1px 6px black;
+    padding: 30px;
+}

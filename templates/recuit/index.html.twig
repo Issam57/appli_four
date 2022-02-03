@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RecuitController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center mt-3 mb-5"><u>Calcul du recuit</u></h1>
+
+    <div class="container">
+        {{ form_start(form) }}
+
+        <div class="form-group" style="width: 100px">
+            {{ form_row(form.recuit) }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+
+
+
+
+    <h2 class="text-center"><u>Date Recuit :</u> <br> <b>{{ res }}</b></h2>
+
+{% endblock %}
