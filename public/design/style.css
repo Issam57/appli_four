@@ -4,3 +4,15 @@
     box-shadow: 1px 1px 6px black;
     padding: 30px;
 }
+
+.clignotant
+{
+    animation-name: clignotant;
+    animation-duration: 1.8s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes clignotant {
+    from {background-color: red; color: white}
+    to {background-color: white; color: black}
+}

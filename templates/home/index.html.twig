@@ -4,20 +4,20 @@
 
 {% block body %}
 
-    <h1 class="text-center mt-3 mb-3 "><u>Date d'aujourd'hui :</u></h1>
-    <h2 class="text-center"><b>{{ dateNow|date("d/m/Y H:i") }}</b></h2>
+    <h1 class="text-center mt-3 mb-3 "><i class="far fa-calendar-alt"></i> <u>Date d'aujourd'hui :</u></h1>
+    <h2 class="text-center border border-dark border-4 p-2"><b>{{ dateNow|date("d/m/Y H:i") }}</b></h2>
     <hr>
-    <h2 class="mb-3 text-center mt-5"><u>Poste en cours</u></h2>
+    <h2 class="mb-3 text-center mt-5"><u>POSTE EN COURS</u></h2>
     <div class="text-center mb-3">
-        <a href="{{ path('first') }}" class="btn btn-primary mt-3">Ajouter un Four</a>
+        <a href="{{ path('first') }}" class="btn btn-primary mt-3"><i class="fas fa-plus"></i> Ajouter un Four</a>
     </div>
     <div class="row">
             {% for first in firsts %}
-                <div class="col-4">
+                <div class="col-lg-4 col-12">
                     <div class="card mt-3" style="width: 18rem;">
                         <div class="card-header
                             {% if date('now')| date("d/m/Y H:i") >= first.recuit|date_modify("-1 hour")|date("d/m/Y H:i") and date('now')| date("d/m/Y H:i") <= first.recuit|date("d/m/Y H:i")  %}
-                                bg-danger text-white
+                                clignotant
                             {% endif %}
                             text-center">
                             <h5 class="card-title"><b>FOUR {{ first.four }}</b></h5>
@@ -41,16 +41,16 @@
     </div>
 
     <hr class="mt-5">
-    <h2 class="mb-3 text-center mt-5"><u>Poste suivant</u></h2>
+    <h2 class="mb-3 text-center mt-5"><u>POSTE SUIVANT</u></h2>
         <div class="text-center mb-3">
-            <a href="{{ path('second') }}" class="btn btn-primary mt-3">Ajouter un Four</a>
+            <a href="{{ path('second') }}" class="btn btn-primary mt-3"><i class="fas fa-plus"></i> Ajouter un Four</a>
         </div>
         <div class="row">
             {% for second in seconds %}
-                <div class="col-4">
+                <div class="col-lg-4 col-12">
                     <div class="card mt-3" style="width: 18rem;">
                         <div class="card-header text-center">
-                            <h5 class="card-title">FOUR 5</h5>
+                            <h5 class="card-title"><b>FOUR {{ second.four }}</b></h5>
                         </div>
                         <div class="card-body text-center">
                             <span class="badge badge-{% if second.statut == 'Sortie'%}success
@@ -70,16 +70,18 @@
         </div>
     </div>
     <hr class="mt-5">
-    <h2 class="mb-3 text-center mt-5"><u>Four à l'arrêt</u></h2>
+    <h2 class="mb-3 text-center mt-5"><u>FOUR À L'ARRÊT</u></h2>
     <div class="text-center mb-3">
-        <a href="{{ path('arret') }}" class="btn btn-primary mt-3">Ajouter un Four</a>
+        <a href="{{ path('arret') }}" class="btn btn-primary mt-3"><i class="fas fa-plus"></i> Ajouter un Four</a>
     </div>
     <div class="container">
         <div class="row">
             {% for arret in arrets  %}
-                <div class="col-4">
+                <div class="col-lg-4 col-12">
                     <div class="card text-white bg-danger mt-3" style="max-width: 18rem;">
-                        <div class="card-header text-center">FOUR {{ arret.four }}</div>
+                        <div class="card-header text-center">
+                            <h5><b>FOUR {{ arret.four }}</b></h5>
+                        </div>
                         <div class="card-body text-center">
                             <h5 class="card-title">ARRÊT</h5>
                             <p ><u>{% if arret.emplacement != "" %}Base {% endif %} {{ arret.emplacement }}</u></p>
