@@ -17,6 +17,7 @@ class RecuitController extends AbstractController
 
     /**
      * @Route("/recuit", name="recuit")
+     *
      */
     public function index(Request $request, EntityManagerInterface $manager, CalculDate $calculDate): Response
     {

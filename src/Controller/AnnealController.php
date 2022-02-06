@@ -33,6 +33,11 @@ class AnnealController extends AbstractController
 
             $manager->flush();
 
+            $this->addFlash(
+                'success',
+                "Le <strong>four {$first->getFour()}</strong> a bien été enregistré"
+            );
+
             return $this->redirectToRoute('home');
         }
 
@@ -57,6 +62,11 @@ class AnnealController extends AbstractController
             $manager->persist($second);
 
             $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Le <strong>four {$second->getFour()}</strong> a bien été enregistré"
+            );
 
             return $this->redirectToRoute('home');
         }
@@ -83,6 +93,11 @@ class AnnealController extends AbstractController
 
             $manager->flush();
 
+            $this->addFlash(
+                'success',
+                "Le <strong>four {$arret->getFour()}</strong> a bien été enregistré"
+            );
+
             return $this->redirectToRoute('home');
         }
 
@@ -99,6 +114,11 @@ class AnnealController extends AbstractController
         $manager->remove($first);
         $manager->flush();
 
+        $this->addFlash(
+            'danger',
+            "Le <strong>four {$first->getFour()}</strong> a bien été supprimé"
+        );
+
         return $this->redirectToRoute('home');
     }
 
@@ -109,6 +129,11 @@ class AnnealController extends AbstractController
         $manager->remove($second);
         $manager->flush();
 
+        $this->addFlash(
+            'danger',
+            "Le <strong>four {$second->getFour()}</strong> a bien été supprimé"
+        );
+
         return $this->redirectToRoute('home');
     }
 
@@ -118,6 +143,11 @@ class AnnealController extends AbstractController
     public function deleteArret(EntityManagerInterface $manager, Arret $arret) {
         $manager->remove($arret);
         $manager->flush();
+
+        $this->addFlash(
+            'danger',
+            "Le <strong>four {$arret->getFour()}</strong> a bien été supprimé"
+        );
 
         return $this->redirectToRoute('home');
     }
@@ -136,6 +166,11 @@ class AnnealController extends AbstractController
             $first = $form->getData();
 
             $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Le <strong>four {$first->getFour()}</strong> a bien été modifié"
+            );
 
             return $this->redirectToRoute('home');
         }
@@ -158,6 +193,11 @@ class AnnealController extends AbstractController
 
             $manager->flush();
 
+            $this->addFlash(
+                'success',
+                "Le <strong>four {$second->getFour()}</strong> a bien été modifié"
+            );
+
             return $this->redirectToRoute('home');
         }
 
@@ -179,6 +219,11 @@ class AnnealController extends AbstractController
             $arret = $form->getData();
 
             $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Le <strong>four {$arret->getFour()}</strong> a bien été modifié"
+            );
 
             return $this->redirectToRoute('home');
         }
