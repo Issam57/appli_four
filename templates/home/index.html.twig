@@ -52,7 +52,12 @@
         </div>
         <div class="row">
             {% for second in seconds %}
-                <div class="col-lg-4 col-12">
+                <div class="col-lg-4 col-12
+
+                    {% if date('now')| date("d/m/Y H:i") > second.recuit|date_modify("+1 day")|date("d/m/Y H:i") %}
+                        d-none
+                    {% endif %}
+                ">
                     <div class="card mt-3" style="width: 18rem;">
                         <div class="card-header text-center">
                             <h5 class="card-title"><b>FOUR {{ second.four }}</b></h5>
