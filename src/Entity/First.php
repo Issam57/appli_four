@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\FirstRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=FirstRepository::class)
  */
@@ -19,6 +21,7 @@ class First
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Choice({1,2,3,4,5,6,11,12,13,14,15,16,17,18,19,20,21,22,23})
      */
     private $four;
 
@@ -34,6 +37,8 @@ class First
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\GreaterThanOrEqual(0)
+     * @Assert\LessThanOrEqual(16)
      */
     private $emplacement;
 
